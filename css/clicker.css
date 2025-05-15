@@ -1,0 +1,109 @@
+/* =========== CLICKER ========== */
+.clicker__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10% 0;
+  height: 100%;
+  gap: 20px;
+}
+
+.clicker__interface {
+  /* border: 1px solid #fff; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  gap: 90px;
+}
+
+.clicker__balance {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.clicker__balance-amount {}
+
+.clicker__btn {
+  font-size: 40px;
+  font-weight: 800;
+  color: #000;
+  padding: 20px;
+  /* margin: 0 auto; */
+  min-width: 300px;
+  min-height: 300px;
+  border-radius: 20px;
+  transition: transform 0.2s;
+}
+
+.clicker__btn:hover {
+  transform: scale(1.03);
+}
+
+.clicker__btn:active {
+  transform: scale(0.98);
+}
+
+
+
+
+
+
+.upgrades {}
+
+.upgrades__list {
+  display: grid;
+  border: 1px solid #fff;
+  overflow: hidden;
+  border-radius: 20px;
+  width: 50%;
+  height: 100%;
+}
+
+.upgrades__element {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  border-bottom: 1px solid #fff;
+}
+
+.upgrades__element:last-child {
+  border-bottom: none;
+}
+
+.upgrades__elem-title {
+  font-size: 40px;
+  padding: 0 20px;
+}
+
+.upgrades__elem-description {
+  font-size: 30px;
+  padding: 0 20px;
+}
+
+.upgrades__buy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column-start: 2;
+  grid-column-end: -1;
+  grid-row-start: 1;
+  grid-row-end: -1;
+  border-left: 1px solid #fff;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.upgrades__buy-btn:hover {
+  background: #333;
+}
+
+.upgrades__buy-btn:active {
+  background: #222;
+  transition: background 0.1s;
+}
