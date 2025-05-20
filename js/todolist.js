@@ -112,6 +112,50 @@ document.addEventListener('click', event => {
 
 });
 
+document.addEventListener('dblclick', event => {
+  event.target.classList.toggle('list__text--expanded')
+if (window.getSelection) {
+    window.getSelection().removeAllRanges();
+  } else if (document.selection) {
+    // Для старых IE
+    document.selection.empty();
+  }
+  console.log(event.target);
+});
+
+
+// chatGPT code for adding temporary class by right swipe
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', function (e) {
+  if (e.target.classList.contains('list__text')) {
+    touchStartX = e.changedTouches[0].screenX;
+  }
+});
+
+document.addEventListener('touchend', function (e) {
+  if (e.target.classList.contains('list__text')) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe(e.target);
+  }
+});
+
+function handleSwipe(target) {
+  const deltaX = touchEndX - touchStartX;
+
+  // Свайп вправо более 50px
+  if (deltaX > 50) {
+    const parentItem = target.closest('.list__item');
+    if (parentItem) {
+      parentItem.classList.add('list__item--swiped');
+      setTimeout(() => {
+        parentItem.classList.remove('list__item--swiped');
+      }, 1000);
+    }
+  }
+}
+
 
 // chatGPT code for task uploading on page opening
 loadTasksFromLocalStorage();
