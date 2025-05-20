@@ -162,7 +162,7 @@ document.addEventListener('touchend', event => {
       // Удаляем класс через 2 секунды (длительность анимации)
       setTimeout(() => {
         parentItem.classList.remove('list__item--swiped');
-      }, 2000);
+      }, 1200);
     }
   }
 
