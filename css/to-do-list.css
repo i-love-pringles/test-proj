@@ -64,10 +64,10 @@
   background: #0000;
 }
 
-.list__item:hover {
+/* .list__item:hover {
   transform: translatex(100px);
   width: calc(100% - 100px);
-}
+} */
 
 .list__item::before {
   content: '';
@@ -317,6 +317,12 @@
 }
 
 /* ================== */
+@media (min-width: 551px) {
+  .list__item:hover {
+    transform: translatex(100px);
+    width: calc(100% - 100px);
+  }
+}
 
 @media (max-width: 750px) {
 
@@ -366,11 +372,6 @@
     left: -65px;
     border: 5px solid #232323;
     top: calc(50% - 30px);
-  }
-
-.list__item:hover {
-    transform: none;
-    width: 100%;
   }
 
   .completed__button {

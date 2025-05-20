@@ -110,21 +110,18 @@ document.addEventListener('click', event => {
     saveTasksToLocalStorage();
   }
 
-  console.log("this is clicked element:");
-  console.log(event.target.parentElement);
-  
+
 
 });
 
 document.addEventListener('dblclick', event => {
   event.target.classList.toggle('list__text--expanded')
-if (window.getSelection) {
+  if (window.getSelection) {
     window.getSelection().removeAllRanges();
   } else if (document.selection) {
     // Для старых IE
     document.selection.empty();
   }
-  console.log(event.target);
 });
 
 
@@ -136,7 +133,7 @@ let swipeTarget = null;
 // Сохраняем начальную позицию и целевой элемент
 document.addEventListener('touchstart', event => {
   const el = event.target.closest('.list__text');
-  
+
   if (el) {
     touchStartX = event.changedTouches[0].screenX;
     swipeTarget = el;
@@ -171,9 +168,6 @@ document.addEventListener('touchend', event => {
 
   swipeTarget = null;
 });
-
-
-
 
 // chatGPT code for task uploading on page opening
 loadTasksFromLocalStorage();
