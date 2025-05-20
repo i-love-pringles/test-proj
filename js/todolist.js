@@ -110,6 +110,10 @@ document.addEventListener('click', event => {
     saveTasksToLocalStorage();
   }
 
+  console.log("this is clicked element:");
+  console.log(event.target.parentElement);
+  
+
 });
 
 document.addEventListener('dblclick', event => {
@@ -130,35 +134,44 @@ let touchEndX = 0;
 let swipeTarget = null;
 
 // Сохраняем начальную позицию и целевой элемент
-document.addEventListener('touchstart', function (e) {
-  const el = e.target.closest('.list__text');
+document.addEventListener('touchstart', event => {
+  const el = event.target.closest('.list__text');
+  
   if (el) {
-    touchStartX = e.changedTouches[0].screenX;
+    touchStartX = event.changedTouches[0].screenX;
     swipeTarget = el;
   }
 });
 
 // Сохраняем конечную позицию и обрабатываем свайп
-document.addEventListener('touchend', function (e) {
+document.addEventListener('touchend', event => {
   if (!swipeTarget) return;
 
-  touchEndX = e.changedTouches[0].screenX;
+  touchEndX = event.changedTouches[0].screenX;
   const deltaX = touchEndX - touchStartX;
 
-  // Свайп вправо более 50px
-  if (deltaX > 50) {
+  if (deltaX > 40) {
     const parentItem = swipeTarget.closest('.list__item');
     if (parentItem) {
+      // Удаляем класс перед повторным применением
+      parentItem.classList.remove('list__item--swiped');
+
+      // 🔧 Форсируем перерисовку (reflow), чтобы анимация точно сработала
+      void parentItem.offsetWidth;
+
+      // Повторно добавляем класс, чтобы перезапустить анимацию
       parentItem.classList.add('list__item--swiped');
+
+      // Удаляем класс через 2 секунды (длительность анимации)
       setTimeout(() => {
         parentItem.classList.remove('list__item--swiped');
-      }, 1000);
+      }, 2000);
     }
   }
 
-  // Сброс
   swipeTarget = null;
 });
+
 
 
 
