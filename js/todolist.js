@@ -127,26 +127,27 @@ if (window.getSelection) {
 // chatGPT code for adding temporary class by right swipe
 let touchStartX = 0;
 let touchEndX = 0;
+let swipeTarget = null;
 
+// Сохраняем начальную позицию и целевой элемент
 document.addEventListener('touchstart', function (e) {
-  if (e.target.classList.contains('list__text')) {
+  const el = e.target.closest('.list__text');
+  if (el) {
     touchStartX = e.changedTouches[0].screenX;
+    swipeTarget = el;
   }
 });
 
+// Сохраняем конечную позицию и обрабатываем свайп
 document.addEventListener('touchend', function (e) {
-  if (e.target.classList.contains('list__text')) {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe(e.target);
-  }
-});
+  if (!swipeTarget) return;
 
-function handleSwipe(target) {
+  touchEndX = e.changedTouches[0].screenX;
   const deltaX = touchEndX - touchStartX;
 
   // Свайп вправо более 50px
   if (deltaX > 50) {
-    const parentItem = target.closest('.list__item');
+    const parentItem = swipeTarget.closest('.list__item');
     if (parentItem) {
       parentItem.classList.add('list__item--swiped');
       setTimeout(() => {
@@ -154,7 +155,11 @@ function handleSwipe(target) {
       }, 1000);
     }
   }
-}
+
+  // Сброс
+  swipeTarget = null;
+});
+
 
 
 // chatGPT code for task uploading on page opening
