@@ -151,6 +151,7 @@
 .done-btn {
   background: #626262;
   opacity: 100%;
+  transition: opacity 0.2s, background 0.2s;
 }
 
 .list__controls {
