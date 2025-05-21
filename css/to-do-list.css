@@ -124,12 +124,12 @@
   height: calc(100% - 20px);
   cursor: pointer;
   opacity: 0%;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s 0.2s, background 0.2s 0.2s;
 }
 
-.completed__button:hover {
+/* .completed__button:hover {
   opacity: 100%;
-}
+} */
 
 .list__text {
   height: 100%;
@@ -322,6 +322,10 @@
     transform: translatex(100px);
     width: calc(100% - 100px);
   }
+
+  .completed__button:hover {
+    opacity: 100%;
+  }
 }
 
 @media (max-width: 750px) {
@@ -395,17 +399,22 @@
     font-size: 40px;
   }
 
+  .want-delete {
+    transform: translatex(65px);
+    width: calc(100% - 65px);
+  }
+
   .delete-btn {
     opacity: 100%;
     background: #CF4848 url('../img/icons/bin.svg') 50% 50%/30px no-repeat;
     transition: background 0.2s, filter 0.2s;
   }
 
-  .delete-btn:hover {
+  /* .delete-btn:hover {
     filter: brightness(0.8);
     background: #CF4848 url('../img/icons/bin-hover.svg') 50% 50%/30px no-repeat;
     transition: background 0.2s, filter 0.2s;
-  }
+  } */
 
   .modal__window {
     padding: 5px;
