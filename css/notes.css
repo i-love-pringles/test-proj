@@ -161,6 +161,21 @@
   height: 30px;
 }
 
+@keyframes copied {
+0%{
+  background: #87b76fbb;
+}
+100%{
+  background: #7B7B7B90;
+}
+
+}
+
+.copied{
+  animation: copied 0.2s ease-in 1 forwards;
+
+}
+
 .notes__controls {
   display: flex;
   gap: 10px;
@@ -209,4 +224,264 @@
 
 .notes__controls-minus:active {
   filter: brightness(0.5);
+}
+.notes__controls-minus--active {
+  filter: brightness(0.5);
+  color: #fab6b6;
+}
+.notes__controls-minus--active:hover {
+  filter: brightness(0.5);
+}
+
+/* ========= MODAL ========= */
+.modal {
+  position: fixed;
+  z-index: 11;
+  inset: 0;
+  backdrop-filter: blur(5px) brightness(0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility 0.4s, opacity 0.4s;
+}
+
+.modal-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__inner {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* flex-shrink: 1; */
+}
+
+.modal__window {
+  will-change: opacity;
+  background: #1C1C1C;
+  padding: 10px 10px;
+  position: relative;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: -60px;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: #CF4848;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  transition: filter 0.2s, color 0.2s;
+  color: #953434;
+}
+
+.modal__close-btn span {
+  transform: rotate(45deg);
+}
+
+.modal__input {
+  background: #232323;
+  border-radius: 15px;
+  min-width: 100%;
+  max-width: 1080px;
+  height: 420px;
+  padding: 21px 20px;
+  overflow: scroll;
+  font-size: 32px;
+  color: #e5e5e5;
+  resize: none;
+}
+
+.modal__save-btn {
+  background: #4EC953;
+  height: 50px;
+  border-radius: 15px;
+  font-size: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.2s, color 0.2s;
+  color: #3a913d;
+}
+
+.modal__close-btn:hover {
+  filter: brightness(0.8);
+  color: #fab6b6;
+}
+
+.modal__save-btn:hover {
+  filter: brightness(0.8);
+  color: #cbffcc;
+}
+
+.want-delete{
+  bottom: 10px;
+  opacity: 1;
+  background: #CF484890;
+}
+.want-delete:hover{
+  background: #CF4848BB;
+}
+.want-delete .notes-copy-icon{
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+}
+
+.want-delete::after{
+  content: '';
+  width: 30px;
+  height: 30px;
+  background: url(../img/icons/bin-note.svg) 50% 50%/30px no-repeat;
+}
+/* ======================= */
+
+@media (min-width: 551px) {
+  /* .list__item:hover {
+    transform: translatex(100px);
+    width: calc(100% - 100px);
+  }
+
+  .completed__button:hover {
+    opacity: 100%;
+  } */
+}
+
+@media (max-width: 750px) {
+/* 
+  .list__text,
+  .modal__input {
+    font-size: 28px;
+    padding: 24px 20px;
+  } */
+}
+
+@media (max-width: 550px) {
+
+  /* .list__item--swiped {
+    transform: translatex(65px);
+    width: calc(100% - 65px);
+  }
+
+  .list__title {
+    padding: 5px 5px 0px;
+  }
+
+  .list__title-text-elem {
+    height: 60px;
+    font-size: 28px;
+    padding: 9px;
+  }
+
+  .to-do-list {
+    padding: 5px;
+    gap: 5px;
+  }
+
+  .list__text {
+    max-height: 60px;
+    font-size: 20px;
+    padding: 15px 9px;
+    border-radius: 15px;
+  }
+
+  .list__text--expanded {
+    max-height: 900px;
+  }
+
+  .list__item-checkbox {
+    width: 60px;
+    height: 60px;
+    left: -65px;
+    border: 5px solid #232323;
+    top: calc(50% - 30px);
+  }
+
+  .completed__button {
+    top: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+  }
+
+  .list__controls {
+    padding: 0 5px 5px;
+    gap: 5px;
+    height: 60px;
+  }
+
+  .list__controls-plus {
+    font-size: 40px;
+  }
+
+  .list__controls-minus {
+    font-size: 40px;
+  }
+
+  .want-delete {
+    transform: translatex(65px);
+    width: calc(100% - 65px);
+  }
+
+  .delete-btn {
+    opacity: 100%;
+    background: #CF4848 url('../img/icons/bin.svg') 50% 50%/30px no-repeat;
+    transition: background 0.2s, filter 0.2s;
+  }
+
+  .modal__window {
+    padding: 5px;
+  }
+
+  .modal__input {
+    height: 60px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    padding: 15px 9px;
+  }
+
+  .modal__close-btn {
+    top: -55px;
+    font-size: 40px;
+
+  }
+
+  .modal__save-btn {
+    font-size: 28px;
+  } */
+
+
+}
+
+@media (max-width: 350px) {
+  /* .list__title-text-elem {
+    font-size: 25px;
+    padding: 11px 9px;
+  }
+
+  .list__text {
+    font-size: 16px;
+    padding: 18px 9px;
+  }
+
+  .modal__input {
+    font-size: 16px;
+    padding: 18px 9px;
+  }
+
+  .modal__save-btn {
+    font-size: 25px;
+  } */
+
+
 }

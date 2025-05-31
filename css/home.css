@@ -30,7 +30,7 @@
 .list__item {
   background: #232323;
   width: 100%;
-  height: 90px;
+  height: 100%;
   border-radius: 15px;
   position: relative;
   transition: transform 0.3s, width 0.3s;
@@ -85,7 +85,7 @@
 }
 
 .list__text {
-  height: 90px;
+  height: 100%;
   padding: 21px 20px;
   overflow: hidden;
   overflow: scroll

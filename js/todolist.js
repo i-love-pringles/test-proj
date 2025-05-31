@@ -109,9 +109,6 @@ document.addEventListener('click', event => {
     item.remove();
     saveTasksToLocalStorage();
   }
-
-
-
 });
 
 document.addEventListener('dblclick', event => {
