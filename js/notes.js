@@ -57,7 +57,7 @@ window.addEventListener('resize', toggleClassOnResize);
 
 // window layout switcher
 function loadLayoutFromLocalStorage() {
-  const layout = localStorage.getItem('notesLayout') || '3';
+  const layout = localStorage.getItem('notesLayout') || '2';
   const notesContent = document.querySelector('.notes__content');
   const windowsBtn1 = document.querySelector('.notes__windows-1');
   const windowsBtn2 = document.querySelector('.notes__windows-2');
