@@ -257,15 +257,18 @@ document.addEventListener('dblclick', (event) => {
   const noteTextDiv = noteItem.querySelector('.notes__text');
   if (!noteTextDiv) return;
 
-  // Открываем модалку и вставляем текст
-  const modal = document.querySelector('.modal');
-  const modalInput = document.querySelector('.modal__input');
+  const tempBtn = noteItem.querySelector('.notes__copy-btn');
+  tempBtn.classList.remove('notes__item--hover');
 
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = noteTextDiv.innerHTML.replace(/<br\s*\/?>/gi, '\n');
-  modalInput.value = tempDiv.textContent;
+// Открываем модалку и вставляем текст
+const modal = document.querySelector('.modal');
+const modalInput = document.querySelector('.modal__input');
 
-  editingNoteElement = noteItem; // сохраняем ссылку на редактируемый элемент
+const tempDiv = document.createElement('div');
+tempDiv.innerHTML = noteTextDiv.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+modalInput.value = tempDiv.textContent;
 
-  modal.classList.add('modal-open');
+editingNoteElement = noteItem; // сохраняем ссылку на редактируемый элемент
+
+modal.classList.add('modal-open');
 });
