@@ -138,7 +138,7 @@
   backdrop-filter: blur(3px);
   cursor: pointer;
   opacity: 0.5;
-  transition: bottom 0.2s, opacity 0.2s, background 0.2s, backdrop-filter 0.2s;
+  transition: bottom 0.2s, opacity 0.2s, background 0.1s, backdrop-filter 0.2s;
 }
 
 .notes__copy-btn:hover {
@@ -150,28 +150,23 @@
   background: #7B7B7BBB;
 }
 
-
-.notes__item:hover .notes__copy-btn {
-  bottom: 10px;
-  opacity: 1;
-}
-
 .notes-copy-icon {
   width: 30px;
   height: 30px;
 }
 
 @keyframes copied {
-0%{
-  background: #87b76fbb;
-}
-100%{
-  background: #7B7B7B90;
-}
+  0% {
+    background: #87b76fbb;
+  }
+
+  100% {
+    background: #7B7B7B90;
+  }
 
 }
 
-.copied{
+.copied {
   animation: copied 0.2s ease-in 1 forwards;
 
 }
@@ -188,7 +183,6 @@
 .notes__controls-plus,
 .notes__controls-minus {
   height: 90px;
-  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -225,10 +219,12 @@
 .notes__controls-minus:active {
   filter: brightness(0.5);
 }
+
 .notes__controls-minus--active {
   filter: brightness(0.5);
   color: #fab6b6;
 }
+
 .notes__controls-minus--active:hover {
   filter: brightness(0.5);
 }
@@ -265,6 +261,9 @@
   position: relative;
   border-radius: 20px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .modal__close-btn {
@@ -324,164 +323,163 @@
   color: #cbffcc;
 }
 
-.want-delete{
+.want-delete {
   bottom: 10px;
   opacity: 1;
   background: #CF484890;
 }
-.want-delete:hover{
+
+.want-delete:hover {
   background: #CF4848BB;
 }
-.want-delete .notes-copy-icon{
+
+.want-delete .notes-copy-icon {
   opacity: 0;
   visibility: hidden;
   display: none;
 }
 
-.want-delete::after{
+.want-delete::after {
   content: '';
   width: 30px;
   height: 30px;
   background: url(../img/icons/bin-note.svg) 50% 50%/30px no-repeat;
 }
+
 /* ======================= */
 
 @media (min-width: 551px) {
-  /* .list__item:hover {
-    transform: translatex(100px);
-    width: calc(100% - 100px);
+  .notes__item:hover .notes__copy-btn {
+    bottom: 10px;
+    opacity: 1;
   }
+}
 
-  .completed__button:hover {
-    opacity: 100%;
-  } */
+@media (max-width: 900px) {
+
+  .notes__text {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 750px) {
-/* 
-  .list__text,
+  .notes__title {
+    font-size: 5.2vw;
+  }
+}
+
+@media (max-width: 650px) {
+  .notes__windows-style-item rect {
+    height: 43px;
+    rx: 3;
+    y: -3.5;
+  }
+
+  .notes__windows-style-item svg {
+    width: 68px;
+    height: 30px;
+    transform: scaleY(1.2);
+  }
+
   .modal__input {
-    font-size: 28px;
     padding: 24px 20px;
-  } */
+    font-size: 28px;
+  }
 }
 
 @media (max-width: 550px) {
 
-  /* .list__item--swiped {
-    transform: translatex(65px);
-    width: calc(100% - 65px);
+  .notes__windows-style {
+    gap: 4px;
   }
 
-  .list__title {
-    padding: 5px 5px 0px;
-  }
-
-  .list__title-text-elem {
-    height: 60px;
+  .notes__title {
     font-size: 28px;
-    padding: 9px;
   }
 
-  .to-do-list {
+  .notes__text {
+    font-size: 16px;
+  }
+
+  .notes__header {
+    padding: 5px 5px 0;
+  }
+
+  .notes__header-inner {
+    padding: 8px 9px;
+    height: 60px;
+  }
+
+  .notes__content {
     padding: 5px;
     gap: 5px;
   }
 
-  .list__text {
-    max-height: 60px;
-    font-size: 20px;
-    padding: 15px 9px;
-    border-radius: 15px;
+  .notes__item {
+    height: 259px;
   }
 
-  .list__text--expanded {
-    max-height: 900px;
-  }
-
-  .list__item-checkbox {
-    width: 60px;
-    height: 60px;
-    left: -65px;
-    border: 5px solid #232323;
-    top: calc(50% - 30px);
-  }
-
-  .completed__button {
-    top: 5px;
-    left: 5px;
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
-  }
-
-  .list__controls {
+  .notes__controls {
+    gap: 5px;
     padding: 0 5px 5px;
-    gap: 5px;
-    height: 60px;
   }
 
-  .list__controls-plus {
+  .notes__controls-plus,
+  .notes__controls-minus {
+    height: 60px;
     font-size: 40px;
   }
 
-  .list__controls-minus {
-    font-size: 40px;
+  .notes__copy-btn {
+    width: calc(100% - 10px);
+    left: 5px;
   }
 
-  .want-delete {
-    transform: translatex(65px);
-    width: calc(100% - 65px);
+  .notes__item--hover {
+    bottom: 10px;
+    opacity: 1;
   }
 
-  .delete-btn {
-    opacity: 100%;
-    background: #CF4848 url('../img/icons/bin.svg') 50% 50%/30px no-repeat;
-    transition: background 0.2s, filter 0.2s;
+  .notes__windows-style span:nth-child(2) {
+    display: none;
   }
 
-  .modal__window {
-    padding: 5px;
-  }
-
-  .modal__input {
-    height: 60px;
-    margin-bottom: 5px;
-    font-size: 20px;
-    padding: 15px 9px;
+  .notes__windows-style-item:first-child {
+    display: none;
   }
 
   .modal__close-btn {
-    top: -55px;
     font-size: 40px;
-
+    top: -55px;
   }
 
-  .modal__save-btn {
+  .modal__input {
+    padding: 15px 9px;
+    font-size: 20px;
+    height: 280px;
+  }
+  .modal__window{
+    padding: 5px;
+    gap: 5px;
+  }
+  .modal__save-btn{
     font-size: 28px;
-  } */
+  }
+
+
 
 
 }
 
 @media (max-width: 350px) {
-  /* .list__title-text-elem {
+  .notes__title {
     font-size: 25px;
-    padding: 11px 9px;
   }
-
-  .list__text {
-    font-size: 16px;
+    .modal__input {
     padding: 18px 9px;
-  }
-
-  .modal__input {
     font-size: 16px;
-    padding: 18px 9px;
   }
-
-  .modal__save-btn {
+  .modal__save-btn{
     font-size: 25px;
-  } */
-
-
+  }
 }

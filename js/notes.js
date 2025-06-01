@@ -1,3 +1,5 @@
+let editingNoteElement = null;
+
 // work with local storage
 function saveNotesToLocalStorage() {
   const notes = [];
@@ -16,10 +18,9 @@ function loadNotesFromLocalStorage() {
   const notesContent = document.querySelector('.notes__content');
   const savedNotes = JSON.parse(localStorage.getItem('notes'));
 
-  // resetting data before loading to avoid duplicate notes
-  notesContent.innerHTML = '';
-
   if (savedNotes && Array.isArray(savedNotes)) {
+    notesContent.innerHTML = '';
+
     savedNotes.forEach(noteHTML => {
       const li = document.createElement('li');
       li.className = 'notes__item';
@@ -33,6 +34,26 @@ function loadNotesFromLocalStorage() {
     });
   }
 }
+// adaptive layout auto switch
+function toggleClassOnResize() {
+  const notesContent = document.querySelector('.notes__content');
+  const windowsBtn1 = document.querySelector('.notes__windows-1');
+  const windowsBtn2 = document.querySelector('.notes__windows-2');
+  const windowsBtn3 = document.querySelector('.notes__windows-3');
+  if (window.matchMedia('(max-width: 550px)').matches) {
+    notesContent.classList.remove('notes__content--1-windows', 'notes__content--2-windows', 'notes__content--3-windows');
+    windowsBtn1.classList.remove('notes__windows-style-item--active');
+    windowsBtn2.classList.remove('notes__windows-style-item--active');
+    windowsBtn3.classList.remove('notes__windows-style-item--active');
+
+    notesContent.classList.add('notes__content--2-windows');
+    windowsBtn2.classList.add('notes__windows-style-item--active');
+  }
+}
+
+toggleClassOnResize();
+window.addEventListener('resize', toggleClassOnResize);
+
 
 // window layout switcher
 function loadLayoutFromLocalStorage() {
@@ -86,6 +107,16 @@ document.addEventListener('click', (event) => {
     }
   }
 
+  if (target.classList.contains('notes__item') || target.classList.contains('notes__text')) {
+    const closestItem = target.closest('.notes__item');
+    const tempBtn = closestItem.querySelector('.notes__copy-btn');
+    tempBtn.classList.add('notes__item--hover')
+    setTimeout(() => tempBtn.classList.remove('notes__item--hover'), 1000);
+
+
+    return;
+  }
+
   // new note adding
   if (target.classList.contains('notes__controls-plus')) {
     document.querySelectorAll('.notes__copy-btn').forEach(btn => btn.classList.remove('want-delete'));
@@ -115,6 +146,7 @@ document.addEventListener('click', (event) => {
   if (target.closest('.modal__close-btn') || target.classList.contains('modal__inner')) {
     modalInput.value = '';
     modal.classList.remove('modal-open');
+    editingNoteElement = null;
     return;
   }
 
@@ -124,20 +156,32 @@ document.addEventListener('click', (event) => {
     if (!taskText) return;
 
     const formattedText = taskText.replace(/\n/g, '<br>');
-    const li = document.createElement('li');
-    li.className = 'notes__item';
-    li.innerHTML = `
+
+    if (editingNoteElement) {
+      // Редактируем существующую заметку
+      const textDiv = editingNoteElement.querySelector('.notes__text');
+      textDiv.innerHTML = formattedText;
+      editingNoteElement = null;
+    } else {
+      // Создаём новую заметку
+      const li = document.createElement('li');
+      li.className = 'notes__item';
+      li.innerHTML = `
       <div class="notes__text">${formattedText}</div>
       <div class="notes__copy-btn">
         <img src="../img/icons/copy.svg" alt="" class="notes-copy-icon">
       </div>
     `;
-    notesContent.appendChild(li);
+      notesContent.appendChild(li);
+    }
+
     modalInput.value = '';
     modal.classList.remove('modal-open');
     saveNotesToLocalStorage();
     return;
   }
+
+
 
   // note text copy
   if (target.closest('.notes__copy-btn') && !target.classList.contains('want-delete')) {
@@ -152,9 +196,30 @@ document.addEventListener('click', (event) => {
     navigator.clipboard.writeText(plainText).then(() => {
       // target.closest('.notes__copy-btn').classList.add('copied');
       targetBtn.classList.add('copied');
-      
-      setTimeout(() => targetBtn.classList.remove('copied'), 200);
+
+      setTimeout(() => targetBtn.classList.remove('copied'), 150);
 
     });
   }
+});
+
+// note text edit
+document.addEventListener('dblclick', (event) => {
+  const noteItem = event.target.closest('.notes__item');
+  if (!noteItem) return;
+
+  const noteTextDiv = noteItem.querySelector('.notes__text');
+  if (!noteTextDiv) return;
+
+  // Открываем модалку и вставляем текст
+  const modal = document.querySelector('.modal');
+  const modalInput = document.querySelector('.modal__input');
+
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = noteTextDiv.innerHTML.replace(/<br\s*\/?>/gi, '\n');
+  modalInput.value = tempDiv.textContent;
+
+  editingNoteElement = noteItem; // сохраняем ссылку на редактируемый элемент
+
+  modal.classList.add('modal-open');
 });
