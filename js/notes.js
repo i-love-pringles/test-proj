@@ -34,13 +34,45 @@ function loadNotesFromLocalStorage() {
     });
   }
 }
+
+
+
+
+
+
+
 // adaptive layout auto switch
+// function toggleClassOnResize() {
+//   const notesContent = document.querySelector('.notes__content');
+//   const windowsBtn1 = document.querySelector('.notes__windows-1');
+//   const windowsBtn2 = document.querySelector('.notes__windows-2');
+//   const windowsBtn3 = document.querySelector('.notes__windows-3');
+//   if (window.matchMedia('(max-width: 550px)').matches) {
+//     notesContent.classList.remove('notes__content--1-windows', 'notes__content--2-windows', 'notes__content--3-windows');
+//     windowsBtn1.classList.remove('notes__windows-style-item--active');
+//     windowsBtn2.classList.remove('notes__windows-style-item--active');
+//     windowsBtn3.classList.remove('notes__windows-style-item--active');
+
+//     notesContent.classList.add('notes__content--2-windows');
+//     windowsBtn2.classList.add('notes__windows-style-item--active');
+//   }
+// }
+
+// toggleClassOnResize();
+// window.addEventListener('resize', toggleClassOnResize);
+// ================================
+let lastWidth = window.innerWidth;
+
 function toggleClassOnResize() {
-  const notesContent = document.querySelector('.notes__content');
+  const currentWidth = window.innerWidth;
+  if (currentWidth !== lastWidth) {
+    lastWidth = currentWidth;
+
+    const notesContent = document.querySelector('.notes__content');
   const windowsBtn1 = document.querySelector('.notes__windows-1');
   const windowsBtn2 = document.querySelector('.notes__windows-2');
   const windowsBtn3 = document.querySelector('.notes__windows-3');
-  if (window.matchMedia('(max-width: 550px)').matches) {
+    if (currentWidth <= 550) {
     notesContent.classList.remove('notes__content--1-windows', 'notes__content--2-windows', 'notes__content--3-windows');
     windowsBtn1.classList.remove('notes__windows-style-item--active');
     windowsBtn2.classList.remove('notes__windows-style-item--active');
@@ -48,11 +80,25 @@ function toggleClassOnResize() {
 
     notesContent.classList.add('notes__content--2-windows');
     windowsBtn2.classList.add('notes__windows-style-item--active');
+    }
   }
 }
 
-toggleClassOnResize();
 window.addEventListener('resize', toggleClassOnResize);
+toggleClassOnResize(); // начальный вызов
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // window layout switcher
