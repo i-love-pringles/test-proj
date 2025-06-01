@@ -348,7 +348,7 @@
 
 /* ======================= */
 
-@media (min-width: 551px) {
+@media (min-width: 451px) {
   .notes__item:hover .notes__copy-btn {
     bottom: 10px;
     opacity: 1;
@@ -435,11 +435,6 @@
     left: 5px;
   }
 
-  .notes__item--hover {
-    bottom: 10px;
-    opacity: 1;
-  }
-
   .notes__windows-style span:nth-child(2) {
     display: none;
   }
@@ -465,10 +460,12 @@
   .modal__save-btn{
     font-size: 28px;
   }
-
-
-
-
+}
+@media (max-width: 450px) {
+  .notes__item--hover {
+    bottom: 10px;
+    opacity: 1;
+  }
 }
 
 @media (max-width: 350px) {
