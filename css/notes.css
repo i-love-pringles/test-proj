@@ -347,7 +347,6 @@
 }
 
 /* ======================= */
-
 @media (min-width: 551px) {
   .notes__item:hover .notes__copy-btn {
     bottom: 10px;
@@ -424,9 +423,7 @@
   .notes__item {
     height: 259px;
   }
-  .want-delete {
-    bottom: 5px;
-  }
+
   .notes__controls {
     gap: 5px;
     padding: 0 5px 5px;
@@ -437,6 +434,9 @@
     height: 60px;
     font-size: 40px;
   }
+  .want-delete {
+  bottom: 5px;
+}
 
   .notes__copy-btn {
     width: calc(100% - 10px);
