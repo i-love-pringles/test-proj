@@ -132,14 +132,12 @@
 
   .list__item {
     height: 100%;
-    /* height: 60px; */
   }
 
   .list__text {
     padding: 15px 9px;
     font-size: 20px;
     height: 100%;
-    /* height: 60px; */
   }
 }
 @media (max-width: 350px) {
